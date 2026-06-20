@@ -1,36 +1,24 @@
 ---
 title: Add Software Application JSON-LD structured data to a page
-description: Learn how to add Software Application JSON-LD structured data to a page using the JsonLdForSoftwareApp component from nextjs-seo.
+description: Learn how to add Software Application JSON-LD structured data to a page using standard Next.js features.
 ---
 
-`nextjs-seo` provides the `JsonLdForSoftwareApp` component to easily add Software Application JSON-LD structured data to a page.
+Next.js natively supports adding Software Application JSON-LD structured data to a page.
 
-## Using the JsonLdForSoftwareApp component
+## Using JSON-LD Scripts
 
-1. Import the `JsonLdForSoftwareApp` component into every page where you want to generate the JSON-LD data.
+1. Add a standard `<script>` tag inside your page component.
 
    ```tsx
    // app/task-manager/page.tsx
-   import { JsonLdForSoftwareApp } from "@mohitjoer/nextjs-seo";
 
    export default function TaskManagerPage() {
      return (
        <>
-         <JsonLdForSoftwareApp
-           name="Task Manager Pro"
-           description="A powerful task management application to organize your work and boost productivity."
-           operatingSystem="Windows, macOS, Linux"
-           category="BusinessApplication"
-           offer={{
-             price: 29.99,
-             currency: "USD",
-           }}
-           rating={{
-             value: 4.5,
-             count: 1250,
-           }}
-           scriptKey="app-json-ld"
-         />
+               <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", /* Insert properties here based on component props */ }) }}
+      />
          <main>
            <h1>Task Manager Pro</h1>
            {/* Your content */}
@@ -42,4 +30,4 @@ description: Learn how to add Software Application JSON-LD structured data to a 
 
 2. Check the generated JSON-LD by inspecting the body element of your page.
 
-  Tip: You can use the `JsonLdForSoftwareApp` component in layout files, but it's recommended to use it in page files instead. Since layouts can be nested, adding JSON-LD in layouts can lead to duplicate or conflicting structured data when parent and child layouts both include JSON-LD scripts.
+  Tip: You can use the JSON-LD script in layout files, but it's recommended to use it in page files instead. Since layouts can be nested, adding JSON-LD in layouts can lead to duplicate or conflicting structured data when parent and child layouts both include JSON-LD scripts.

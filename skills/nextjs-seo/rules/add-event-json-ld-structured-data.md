@@ -1,33 +1,24 @@
 ---
 title: Add Event JSON-LD structured data to a page
-description: Learn how to add Event JSON-LD structured data to a page using the JsonLdForEvent component from nextjs-seo.
+description: Learn how to add Event JSON-LD structured data to a page using standard Next.js features.
 ---
 
-`nextjs-seo` provides the `JsonLdForEvent` component to easily add Event JSON-LD structured data to a page.
+Next.js natively supports adding Event JSON-LD structured data to a page.
 
-## Using the JsonLdForEvent component
+## Using JSON-LD Scripts
 
-1. Import the `JsonLdForEvent` component into every page where you want to generate the JSON-LD data.
+1. Add a standard `<script>` tag inside your page component.
 
    ```tsx
    // app/events/nextjs-conf-2026/page.tsx
-   import { JsonLdForEvent } from "@mohitjoer/nextjs-seo";
 
    export default function EventPage() {
      return (
        <>
-         <JsonLdForEvent
-           name="Next.js Conf 2026"
-           startDate="2026-10-25T09:00:00Z"
-           endDate="2026-10-25T18:00:00Z"
-           eventAttendanceMode="https://schema.org/OnlineEventAttendanceMode"
-           eventStatus="https://schema.org/EventScheduled"
-           location={{
-             "@type": "VirtualLocation",
-             url: "https://nextjs.org/conf"
-           }}
-           scriptKey="event-json-ld"
-         />
+               <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", /* Insert properties here based on component props */ }) }}
+      />
          <main>
            <h1>Next.js Conf 2026</h1>
            {/* Your content */}

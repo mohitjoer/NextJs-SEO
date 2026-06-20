@@ -63,9 +63,8 @@ Automatic route detection works by analyzing your project's file system. However
 To include these routes in your `llms.txt` file, you need to manually specify them in the `manualRoutes` property of the `seo.config.ts` or `seo.config.js` file.
 
 ```ts
-import { defineSeoConfig } from "@mohitjoer/nextjs-seo";
 
-export default defineSeoConfig({
+export const seoConfig = {
   baseUrl: "https://example.com",
   siteName: "Example",
   defaultOgImg: "/og-default.png",

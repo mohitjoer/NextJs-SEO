@@ -11,9 +11,8 @@ description: Learn how to generate the metadata for a page with nextjs-seo.
 
    ```ts
    // app/page.tsx
-   import { genPageMetadata } from "@mohitjoer/nextjs-seo";
 
-   export const metadata = genPageMetadata({
+   export const metadata = {{
      title: "Example - Your trusted source for quality examples",
      description:
        "Discover comprehensive examples and tutorials for web development, design patterns, and best practices.",
@@ -34,11 +33,10 @@ When working with async pages, you can wrap `genPageMetadata` inside an async fu
 
    ```ts
    // app/blog/[slug]/page.tsx
-   import { genPageMetadata } from "@mohitjoer/nextjs-seo";
    import type { Metadata } from "next";
 
    export async function generateMetadata(): Promise<Metadata> {
-     return genPageMetadata({
+     return {{
        title: "Example Title",
        description: "Example Description",
        pageRoute: "/example",
@@ -48,10 +46,9 @@ When working with async pages, you can wrap `genPageMetadata` inside an async fu
 
    ```js
    // app/blog/[slug]/page.jsx
-   import { genPageMetadata } from "@mohitjoer/nextjs-seo";
 
    export async function generateMetadata() {
-     return genPageMetadata({
+     return {{
        title: "Example Title",
        description: "Example Description",
        pageRoute: "/example",
@@ -63,7 +60,6 @@ When working with async pages, you can wrap `genPageMetadata` inside an async fu
 
    ```diff lang="ts"
    // app/blog/[slug]/page.tsx
-   import { genPageMetadata } from "@mohitjoer/nextjs-seo";
    import type { Metadata } from "next";
 
    +interface PageProps {
@@ -83,7 +79,7 @@ When working with async pages, you can wrap `genPageMetadata` inside an async fu
    +  const { slug } = await params;
    +  const article = await getArticle(slug);
 
-     return genPageMetadata({
+     return {{
        title: "Loading...",
        description: "Loading...",
        pageRoute: `/blog/${slug}`,
@@ -93,7 +89,6 @@ When working with async pages, you can wrap `genPageMetadata` inside an async fu
 
    ```diff lang="js"
    // app/blog/[slug]/page.jsx
-   import { genPageMetadata } from "@mohitjoer/nextjs-seo";
 
    +async function getArticle(slug) {
    +  const res = await fetch(`https://api.example.com/articles/${slug}`);
@@ -104,7 +99,7 @@ When working with async pages, you can wrap `genPageMetadata` inside an async fu
    +  const { slug } = await params;
    +  const article = await getArticle(slug);
 
-     return genPageMetadata({
+     return {{
        title: "Loading...",
        description: "Loading...",
        pageRoute: `/blog/${slug}`,
@@ -116,7 +111,6 @@ When working with async pages, you can wrap `genPageMetadata` inside an async fu
 
    ```diff lang="ts"
    // app/blog/[slug]/page.tsx
-   import { genPageMetadata } from "@mohitjoer/nextjs-seo";
    import type { Metadata } from "next";
 
    interface PageProps {
@@ -136,7 +130,7 @@ When working with async pages, you can wrap `genPageMetadata` inside an async fu
      const { slug } = await params;
      const article = await getArticle(slug);
 
-   +  return genPageMetadata({
+   +  return {{
    +    title: `${article.title} - Example Blog`,
    +    description: article.description,
    +    pageRoute: `/blog/${slug}`,
@@ -147,7 +141,6 @@ When working with async pages, you can wrap `genPageMetadata` inside an async fu
 
    ```diff lang="js"
    // app/blog/[slug]/page.jsx
-   import { genPageMetadata } from "@mohitjoer/nextjs-seo";
 
    async function getArticle() {
      const res = await fetch(`https://api.example.com/articles/${slug}`);
@@ -158,7 +151,7 @@ When working with async pages, you can wrap `genPageMetadata` inside an async fu
      const { slug } = await params;
      const article = await getArticle(slug);
 
-   +  return genPageMetadata({
+   +  return {{
    +    title: `${article.title} - Example Blog`,
    +    description: article.description,
    +    pageRoute: `/blog/${slug}`,

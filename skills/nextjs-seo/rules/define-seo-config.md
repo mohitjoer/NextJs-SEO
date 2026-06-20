@@ -6,9 +6,8 @@ description: API Reference for the defineSeoConfig function.
 `nextjs-seo` must be configured through a `seo.config.ts` (or `seo.config.js` if not using TypeScript) file in the root of your project using the `defineSeoConfig` function with a default export.
 
 ```ts
-import { defineSeoConfig } from "@mohitjoer/nextjs-seo";
 
-export default defineSeoConfig({
+export const seoConfig = {
   baseUrl: "https://example.com",
   siteName: "Example",
   defaultOgImg: "/default-og.png",

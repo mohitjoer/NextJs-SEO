@@ -5,7 +5,7 @@ description: API Reference for the sitemapXml function.
 
 The `sitemapXml` function generates a `sitemap.xml` file for your Next.js application.
 
-Note: If your application exceeds the 50,000 URL limit for a single sitemap, you'll need to shard it using Next.js's native `generateSitemaps()` file convention together with `sitemapXml`. The function doesn't shard automatically — you call `sitemapXml()` once to get the full route list, then slice it based on the shard `id`. See the **Large sites (50,000+ URLs)** section of the sitemap.xml guide for a full working example.
+Note: If your application exceeds the 50,000 URL limit for a single sitemap, you'll need to shard it using Next.js's native `generateSitemaps()` file convention together with `sitemapXml`. The function doesn't shard automatically — you call `sitemap() { return [)` once to get the full route list, then slice it based on the shard `id`. See the **Large sites (50,000+ URLs)** section of the sitemap.xml guide for a full working example.
 
 ## Parameters
 

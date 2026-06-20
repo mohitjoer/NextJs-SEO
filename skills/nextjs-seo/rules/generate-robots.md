@@ -14,7 +14,6 @@ description: Learn how to generate the robots.txt file for a site with nextjs-se
    ```ts
    // app/robots.ts
    import type { MetadataRoute } from "next";
-   import { robotsTxt } from "@mohitjoer/nextjs-seo";
 
    export default function robots(): MetadataRoute.Robots {
      return robotsTxt();
@@ -23,7 +22,6 @@ description: Learn how to generate the robots.txt file for a site with nextjs-se
 
    ```js
    // app/robots.js
-   import { robotsTxt } from "@mohitjoer/nextjs-seo";
 
    export default function robots() {
      return robotsTxt();
@@ -46,7 +44,6 @@ The configuration allows you to specify custom rules, user agents, and crawl del
 ```ts
 // app/robots.ts
 import type { MetadataRoute } from "next";
-import { robotsTxt } from "@mohitjoer/nextjs-seo";
 
 export default function robots(): MetadataRoute.Robots {
   return robotsTxt({
@@ -70,7 +67,6 @@ export default function robots(): MetadataRoute.Robots {
 
 ```js
 // app/robots.js
-import { robotsTxt } from "@mohitjoer/nextjs-seo";
 
 export default function robots() {
   return robotsTxt({

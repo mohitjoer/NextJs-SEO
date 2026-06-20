@@ -1,30 +1,24 @@
 ---
 title: Add Breadcrumb JSON-LD structured data to a page
-description: Learn how to add Breadcrumb JSON-LD structured data to a page using the JsonLdForBreadcrumb component from nextjs-seo.
+description: Learn how to add Breadcrumb JSON-LD structured data to a page using standard Next.js features.
 ---
 
-`nextjs-seo` provides the `JsonLdForBreadcrumb` component to easily add Breadcrumb JSON-LD structured data to a page.
+Next.js natively supports adding Breadcrumb JSON-LD structured data to a page.
 
-## Using the JsonLdForBreadcrumb component
+## Using JSON-LD Scripts
 
-1. Import the `JsonLdForBreadcrumb` component into every page where you want to generate the JSON-LD data.
+1. Add a standard `<script>` tag inside your page component.
 
    ```tsx
    // app/products/electronics/laptops/page.tsx
-   import { JsonLdForBreadcrumb } from "@mohitjoer/nextjs-seo";
 
    export default function LaptopsPage() {
      return (
        <>
-         <JsonLdForBreadcrumb
-           itemList={[
-             { name: "Home", route: "/" },
-             { name: "Products", route: "/products" },
-             { name: "Electronics", route: "/products/electronics" },
-             { name: "Laptops", route: "/products/electronics/laptops" },
-           ]}
-           scriptKey="breadcrumb-json-ld"
-         />
+               <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", /* Insert properties here based on component props */ }) }}
+      />
          <main>
            <h1>Laptops</h1>
            {/* Your content */}
@@ -38,4 +32,4 @@ description: Learn how to add Breadcrumb JSON-LD structured data to a page using
 
 2. Check the generated JSON-LD by inspecting the body element of your page.
 
-  Tip: You can use the `JsonLdForBreadcrumb` component in layout files, but it's recommended to use it in page files instead. Since layouts can be nested, adding JSON-LD in layouts can lead to duplicate or conflicting structured data when parent and child layouts both include JSON-LD scripts.
+  Tip: You can use the JSON-LD script in layout files, but it's recommended to use it in page files instead. Since layouts can be nested, adding JSON-LD in layouts can lead to duplicate or conflicting structured data when parent and child layouts both include JSON-LD scripts.

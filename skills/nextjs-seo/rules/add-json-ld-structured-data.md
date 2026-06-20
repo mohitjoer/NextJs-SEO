@@ -11,7 +11,6 @@ description: Learn how to add JSON-LD structured data to a page using the JsonLd
 
    ```tsx
    // app/article/getting-started/page.tsx
-   import { JsonLdScript } from "@mohitjoer/nextjs-seo";
 
    export default function ArticlePage() {
      const jsonLd = {
@@ -27,7 +26,10 @@ description: Learn how to add JSON-LD structured data to a page using the JsonLd
 
      return (
        <>
-         <JsonLdScript jsonLd={jsonLd} scriptKey="jsonld-article" />
+               <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", /* Insert properties here based on component props */ }) }}
+      />
          <article>
            <h1>Getting Started with Next.js</h1>
            {/* Your content */}

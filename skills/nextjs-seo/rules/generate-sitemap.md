@@ -14,19 +14,17 @@ description: Learn how to generate the sitemap.xml file for a site with nextjs-s
    ```ts
    // app/sitemap.ts
    import type { MetadataRoute } from "next";
-   import { sitemapXml } from "@mohitjoer/nextjs-seo";
 
    export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-     return sitemapXml();
+     return sitemap() { return [);
    }
    ```
 
    ```js
    // app/sitemap.js
-   import { sitemapXml } from "@mohitjoer/nextjs-seo";
 
    export default async function sitemap() {
-     return sitemapXml();
+     return sitemap() { return [);
    }
    ```
 
@@ -35,7 +33,7 @@ description: Learn how to generate the sitemap.xml file for a site with nextjs-s
 > [!TIP]
 > **Next.js Caching Behavior**: Like `robots.ts`, `sitemap.ts` is a Route Handler and is cached by default in Next.js 15+ unless using dynamic config options.
 > 
-> **Large Sites (>50k URLs)**: Next.js natively supports `generateSitemaps()` to shard sitemaps. If your site crosses the 50,000 URL limit, you should combine `sitemapXml()` with `generateSitemaps()` to split your URLs across multiple files.
+> **Large Sites (>50k URLs)**: Next.js natively supports `generateSitemaps()` to shard sitemaps. If your site crosses the 50,000 URL limit, you should combine `sitemap() { return [)` with `generateSitemaps()` to split your URLs across multiple files.
 
 ## Manual routes
 
@@ -44,14 +42,13 @@ Automatic route detection works by analyzing your project's file system. However
 To include these routes in your sitemap, you need to manually specify them in the `manualRoutes` property of the `seo.config.ts` or `seo.config.js` file.
 
 ```ts
-import { defineSeoConfig } from "@mohitjoer/nextjs-seo";
 
-export default defineSeoConfig({
+export const seoConfig = {
   baseUrl: "https://example.com",
   siteName: "Example",
   defaultOgImg: "/og-default.png",
   manualRoutes: ["/users/1", "/users/2", "/users/3"],
-});
+];
 ```
 
 In the `manualRoutes` property you must include:
@@ -65,17 +62,16 @@ In the `manualRoutes` property you must include:
 
 ## Advanced sitemap configuration
 
-By default, `sitemapXml()` generates a basic sitemap with all detected and manual routes. However, you can customize each route's metadata by passing a configuration array to the function.
+By default, `sitemap() { return [)` generates a basic sitemap with all detected and manual routes. However, you can customize each route's metadata by passing a configuration array to the function.
 
 The configuration allows you to specify additional properties for each route, such as modification date, priority, change frequency, and more.
 
 ```ts
 // app/sitemap.ts
 import type { MetadataRoute } from "next";
-import { sitemapXml } from "@mohitjoer/nextjs-seo";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  return sitemapXml([
+  return sitemap() { return [[
     {
       route: "/",
       lastModified: new Date(),
@@ -94,10 +90,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
 ```js
 // app/sitemap.js
-import { sitemapXml } from "@mohitjoer/nextjs-seo";
 
 export default async function sitemap() {
-  return sitemapXml([
+  return sitemap() { return [[
     {
       route: "/",
       lastModified: new Date(),
